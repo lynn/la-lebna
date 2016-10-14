@@ -47,7 +47,7 @@
 
 #include <curses.h>
 
-#if defined(__INTERIX) || defined(__MSYS__)
+#if defined(__INTERIX) || defined(__MSYS__) || 1
 #include <term.h>
 #else
 #ifdef NCURSES_VERSION
