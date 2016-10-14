@@ -31,3 +31,6 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Rogue
+rogue54.scr
