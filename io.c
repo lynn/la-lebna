@@ -12,7 +12,7 @@
  * msg:
  *	Display a message at the top of the screen.
  */
-#define MAXMSG	(NUMCOLS - sizeof " (tomu'onaitoi)")
+#define MAXMSG	(NUMCOLS - sizeof " (mu'onai)")
 
 static char msgbuf[2*MAXMSG+1];
 static int newpos = 0;
@@ -69,7 +69,7 @@ endmsg()
     if (mpos)
     {
 	look(FALSE);
-	mvaddstr(0, mpos, " (tomu'onaitoi)");
+	mvaddstr(0, mpos, " (mu'onai)");
 	refresh();
 	if (!msg_esc)
 	    wait_for(' ');
