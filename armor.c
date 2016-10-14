@@ -25,21 +25,20 @@ wear()
 	return;
     if (cur_armor != NULL)
     {
-	addmsg("you are already wearing some.  You'll have to take it off first");
-	endmsg();
+	msg(".i do xa'o dasni .i .ei co'u dasni");
 	after = FALSE;
 	return;
     }
     if (obj->o_type != ARMOR)
     {
-	msg("you can't wear that");
+	msg(".i ka'enai dasni");
 	return;
     }
     waste_time();
     obj->o_flags |= ISKNOW;
     sp = inv_name(obj, TRUE);
     cur_armor = obj;
-    msg("you are now wearing %s", sp);
+    msg(".i ca'o dasni %s", sp);
 }
 
 /*
@@ -53,13 +52,13 @@ take_off()
     if ((obj = cur_armor) == NULL)
     {
 	after = FALSE;
-	msg("you aren't wearing any armor");
+	msg(".i do co'a dasni no da");
 	return;
     }
     if (!dropcheck(cur_armor))
 	return;
     cur_armor = NULL;
-    msg("you used to be wearing %c) %s", obj->o_packch, inv_name(obj, TRUE));
+    msg(".i do pu dasni %c) %s", obj->o_packch, inv_name(obj, TRUE));
 }
 
 /*
