@@ -31,7 +31,7 @@ ring_on()
 	return;
     if (obj->o_type != RING)
     {
-	msg("it would be difficult to wrap that around a finger");
+	msg(".i nandu fa lo nu rurgau ta lo degji");
 	return;
     }
 
@@ -52,7 +52,7 @@ ring_on()
 	ring = RIGHT;
     else
     {
-	msg("you already have a ring on each hand");
+	msg(".i ro xance pe do ku xa'o jai bu'u dasni lo djine");
 	return;
     }
     cur_ring[ring] = obj;
@@ -73,7 +73,7 @@ ring_on()
 	    break;
     }
 
-    addmsg("you are now wearing ");
+    addmsg(".i ca'o dasni ");
     msg("%s (%c)", inv_name(obj, TRUE), obj->o_packch);
 }
 
@@ -89,7 +89,7 @@ ring_off()
 
     if (cur_ring[LEFT] == NULL && cur_ring[RIGHT] == NULL)
     {
-	msg("you aren't wearing any rings");
+	msg(".i ca'o dasni no djine");
 	return;
     }
     else if (cur_ring[LEFT] == NULL)
@@ -103,11 +103,11 @@ ring_off()
     obj = cur_ring[ring];
     if (obj == NULL)
     {
-	msg("not wearing such a ring");
+	msg(".i ta na djine je ca'o se dasni");
 	return;
     }
     if (dropcheck(obj))
-	msg("was wearing %s(%c)", inv_name(obj, TRUE), obj->o_packch);
+	msg(".i pu dasni %s(%c)", inv_name(obj, TRUE), obj->o_packch);
 }
 
 /*
@@ -121,15 +121,15 @@ gethand()
 
     for (;;)
     {
-	msg("left hand or right hand? ");
+	msg(".i zunle ji pritu xance? ");
 	if ((c = readchar()) == ESCAPE)
 	    return -1;
 	mpos = 0;
-	if (c == 'l' || c == 'L')
+	if (c == 'z' || c == 'Z')
 	    return LEFT;
-	else if (c == 'r' || c == 'R')
+	else if (c == 'p' || c == 'P')
 	    return RIGHT;
-	msg("please type L or R");
+	msg(".i ko samci'a me'o Z jonai me'o P");
     }
 }
 
