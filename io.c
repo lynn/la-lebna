@@ -213,7 +213,7 @@ status()
     if (stat_msg)
     {
 	move(0, 0);
-        msg("nilcre %d  rupnu %d  nilka'o %*d(%*d)  niltsa %2d(%d)  nilbandu %-1d  crelai %d/%ld  %s",
+        msg("%dmoi senta  rupnu %d  nilka'o %*d(%*d)  niltsa %2d(%d)  nilbandu %-1d  crelai %d/%ld  %s",
 	    level, purse, hpwidth, pstats.s_hpt, hpwidth, max_hp, pstats.s_str,
 	    max_stats.s_str, 10 - s_arm, pstats.s_lvl, pstats.s_exp,
 	    state_name[hungry_state]);
@@ -222,7 +222,7 @@ status()
     {
 	move(STATLINE, 0);
                 
-        printw("nilcre %d  rupnu %d  nilka'o %*d(%*d)  niltsa %2d(%d)  nilbandu %-2d  crelai %d/%ld  %s",
+        printw("%dmoi senta  rupnu %d  nilka'o %*d(%*d)  niltsa %2d(%d)  nilbandu %-2d  crelai %d/%ld  %s",
 	    level, purse, hpwidth, pstats.s_hpt, hpwidth, max_hp, pstats.s_str,
 	    max_stats.s_str, 10 - s_arm, pstats.s_lvl, pstats.s_exp,
 	    state_name[hungry_state]);
