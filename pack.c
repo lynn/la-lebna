@@ -145,9 +145,8 @@ out:
      */
     if (!silent)
     {
-	if (!terse)
-	    addmsg("you now have ");
-	msg("%s (%c)", inv_name(obj, !terse), obj->o_packch);
+	addmsg("you now have ");
+	msg("%s (%c)", inv_name(obj, TRUE), obj->o_packch);
     }
 }
 
@@ -161,12 +160,7 @@ pack_room(bool from_floor, THING *obj)
 {
     if (++inpack > MAXPACK)
     {
-	if (!terse)
-	    addmsg("there's ");
-	addmsg("no room");
-	if (!terse)
-	    addmsg(" in your pack");
-	endmsg();
+	msg("there's no room in your pack");
 	if (from_floor)
 	    move_msg(obj);
 	inpack = MAXPACK;
@@ -268,12 +262,8 @@ inventory(THING *list, int type)
     }
     if (n_objs == 0)
     {
-	if (terse)
-	    msg(type == 0 ? "empty handed" :
-			    "nothing appropriate");
-	else
-	    msg(type == 0 ? "you are empty handed" :
-			    "you don't have anything appropriate");
+	msg(type == 0 ? "you are empty handed" :
+			"you don't have anything appropriate");
 	return FALSE;
     }
     end_line();
@@ -330,9 +320,7 @@ pick_up(char ch)
 
 move_msg(THING *obj)
 {
-    if (!terse)
-	addmsg("you ");
-    msg("moved onto %s", inv_name(obj, TRUE));
+    msg("you moved onto %s", inv_name(obj, TRUE));
 }
 
 /*
@@ -351,7 +339,7 @@ picky_inven()
 	msg("a) %s", inv_name(pack, FALSE));
     else
     {
-	msg(terse ? "item: " : "which item do you wish to inventory: ");
+	msg("which item do you wish to inventory: ");
 	mpos = 0;
 	if ((mch = readchar()) == ESCAPE)
 	{
@@ -389,11 +377,8 @@ get_item(char *purpose, int type)
     {
 	for (;;)
 	{
-	    if (!terse)
-		addmsg("which object do you want to ");
+	    addmsg("which object do you want to ");
 	    addmsg(purpose);
-	    if (terse)
-		addmsg(" what");
 	    msg("? (* for list): ");
 	    ch = readchar();
 	    mpos = 0;
@@ -445,8 +430,7 @@ money(int value)
     chat(hero.y, hero.x) = (proom->r_flags & ISGONE) ? PASSAGE : FLOOR;
     if (value > 0)
     {
-	if (!terse)
-	    addmsg("you found ");
+	addmsg("you found ");
 	msg("%d gold pieces", value);
     }
 }

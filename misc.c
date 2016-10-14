@@ -277,10 +277,7 @@ eat()
 	return;
     if (obj->o_type != FOOD)
     {
-	if (!terse)
-	    msg("ugh, you would get ill if you ate that");
-	else
-	    msg("that's Inedible!");
+	msg("ugh, you would get ill if you ate that");
 	return;
     }
     if (food_left < 0)
@@ -432,9 +429,7 @@ is_current(THING *obj)
     if (obj == cur_armor || obj == cur_weapon || obj == cur_ring[LEFT]
 	|| obj == cur_ring[RIGHT])
     {
-	if (!terse)
-	    addmsg("That's already ");
-	msg("in use");
+	msg("That's already in use");
 	return TRUE;
     }
     return FALSE;
@@ -460,10 +455,7 @@ get_dir()
     }
     else
     {
-	if (!terse)
-	    msg(prompt = "which direction? ");
-	else
-	    prompt = "direction: ";
+	msg(prompt = "which direction? ");
 	do
 	{
 	    gotit = TRUE;
@@ -540,7 +532,7 @@ call_it(struct obj_info *info)
     }
     else if (!info->oi_guess)
     {
-	msg(terse ? "call it: " : "what do you want to call it? ");
+	msg("what do you want to call it? ");
 	if (get_str(prbuf, stdscr) == NORM)
 	{
 	    if (info->oi_guess != NULL)

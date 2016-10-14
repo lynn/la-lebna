@@ -25,9 +25,7 @@ wear()
 	return;
     if (cur_armor != NULL)
     {
-	addmsg("you are already wearing some");
-	if (!terse)
-	    addmsg(".  You'll have to take it off first");
+	addmsg("you are already wearing some.  You'll have to take it off first");
 	endmsg();
 	after = FALSE;
 	return;
@@ -41,9 +39,7 @@ wear()
     obj->o_flags |= ISKNOW;
     sp = inv_name(obj, TRUE);
     cur_armor = obj;
-    if (!terse)
-	addmsg("you are now ");
-    msg("wearing %s", sp);
+    msg("you are now wearing %s", sp);
 }
 
 /*
@@ -57,20 +53,13 @@ take_off()
     if ((obj = cur_armor) == NULL)
     {
 	after = FALSE;
-	if (terse)
-		msg("not wearing armor");
-	else
-		msg("you aren't wearing any armor");
+	msg("you aren't wearing any armor");
 	return;
     }
     if (!dropcheck(cur_armor))
 	return;
     cur_armor = NULL;
-    if (terse)
-	addmsg("was");
-    else
-	addmsg("you used to be");
-    msg(" wearing %c) %s", obj->o_packch, inv_name(obj, TRUE));
+    msg("you used to be wearing %c) %s", obj->o_packch, inv_name(obj, TRUE));
 }
 
 /*

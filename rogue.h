@@ -462,7 +462,7 @@ extern bool	after, again, allscore, amulet, door_stop, fight_flush,
 		firstmove, has_hit, inv_describe, jump, kamikaze,
 		lower_msg, move_on, msg_esc, noscore, pack_used[],
 		passgo, playing, q_comm, running, save_msg, see_floor,
-		seenstairs, stat_msg, terse, to_death, tombstone;
+		seenstairs, stat_msg, to_death, tombstone;
 
 extern char	dir_ch, file_name[], home[], huh[], *inv_t_name[],
 		l_last_comm, l_last_dir, last_comm, last_dir, *Numname,

@@ -36,10 +36,7 @@ read_scroll()
 	return;
     if (obj->o_type != SCROLL)
     {
-	if (!terse)
-	    msg("there is nothing on it to read");
-	else
-	    msg("nothing to read");
+	msg("there is nothing on it to read");
 	return;
     }
     /*

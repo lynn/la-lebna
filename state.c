@@ -2093,7 +2093,6 @@ rs_save_file(FILE *savef)
     rs_write_boolean(savef, save_msg);              /* 22 */
     rs_write_boolean(savef, see_floor);             /* 23 */
     rs_write_boolean(savef, stat_msg);              /* 24 */
-    rs_write_boolean(savef, terse);                 /* 25 */
     rs_write_boolean(savef, to_death);              /* 26 */
     rs_write_boolean(savef, tombstone);             /* 27 */
 #ifdef MASTER
@@ -2230,7 +2229,6 @@ rs_restore_file(int inf)
     rs_read_boolean(inf, &save_msg);            /* 22 */
     rs_read_boolean(inf, &see_floor);           /* 23 */
     rs_read_boolean(inf, &stat_msg);            /* 24 */
-    rs_read_boolean(inf, &terse);               /* 25 */
     rs_read_boolean(inf, &to_death);            /* 26 */
     rs_read_boolean(inf, &tombstone);           /* 27 */
 #ifdef WIZARD

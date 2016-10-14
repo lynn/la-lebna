@@ -69,10 +69,7 @@ quaff()
 	return;
     if (obj->o_type != POTION)
     {
-	if (!terse)
-	    msg("yuk! Why would you want to drink that?");
-	else
-	    msg("that's undrinkable");
+	msg("yuk! Why would you want to drink that?");
 	return;
     }
     if (obj == cur_weapon)

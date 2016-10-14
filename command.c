@@ -166,12 +166,7 @@ over:
 			    pick_up(obj->o_type);
 		    }
 		    else {
-			if (!terse)
-			    addmsg("there is ");
-			addmsg("nothing here");
-                        if (!terse)
-                            addmsg(" to pick up");
-                        endmsg();
+			msg("there is nothing here to pick up");
 		    }
 		}
 		when '!': shell();
@@ -222,8 +217,7 @@ over:
 		    if (((mp = moat(delta.y, delta.x)) == NULL
 			|| (!see_monst(mp)) && !on(player, SEEMONST)))
 		    {
-			if (!terse)
-			    addmsg("I see ");
+			addmsg("I see ");
 			msg("no monster there");
 			after = FALSE;
 		    }
@@ -300,8 +294,7 @@ over:
 			delta.y += hero.y;
 			delta.x += hero.x;
 			fp = &flat(delta.y, delta.x);
-                        if (!terse)
-                            addmsg("You have found ");
+			addmsg("You have found ");
 			if (chat(delta.y, delta.x) != TRAP)
 			    msg("no trap there");
 			else if (on(player, ISHALU))
@@ -350,10 +343,8 @@ over:
 		when ')': current(cur_weapon, "wielding", NULL);
 		when ']': current(cur_armor, "wearing", NULL);
 		when '=':
-		    current(cur_ring[LEFT], "wearing",
-					    terse ? "(L)" : "on left hand");
-		    current(cur_ring[RIGHT], "wearing",
-					    terse ? "(R)" : "on right hand");
+		    current(cur_ring[LEFT], "wearing", "on left hand");
+		    current(cur_ring[RIGHT], "wearing", "on right hand");
 		when '@':
 		    stat_msg = TRUE;
 		    status();
@@ -504,8 +495,7 @@ foundone:
 			if (rnd(2 + probinc) != 0)
 			    break;
 			chat(y, x) = TRAP;
-			if (!terse)
-			    addmsg("you found ");
+			addmsg("you found ");
 			if (on(player, ISHALU))
 			    msg(tr_name[rnd(NTRAPS)]);
 			else {
@@ -757,14 +747,9 @@ norm:
     }
     if (elsewise != NULL && elsewise == op->oi_guess)
     {
-	if (!terse)
-	    addmsg("Was ");
-	msg("called \"%s\"", elsewise);
+	msg("was called \"%s\"", elsewise);
     }
-    if (terse)
-	msg("call it: ");
-    else
-	msg("what do you want to call it? ");
+    msg("what do you want to call it? ");
 
     if (elsewise == NULL)
 	strcpy(prbuf, "");
@@ -791,8 +776,7 @@ register char *where;
     after = FALSE;
     if (cur != NULL)
     {
-	if (!terse)
-	    addmsg("you are %s (", how);
+	addmsg("you are %s (", how);
 	inv_describe = FALSE;
 	addmsg("%c) %s", cur->o_packch, inv_name(cur, TRUE));
 	inv_describe = TRUE;
@@ -802,8 +786,7 @@ register char *where;
     }
     else
     {
-	if (!terse)
-	    addmsg("you are ");
+	addmsg("you are ");
 	addmsg("%s nothing", how);
 	if (where)
 	    addmsg(" %s", where);

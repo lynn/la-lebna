@@ -102,14 +102,14 @@ bool thrown;
     }
     mname = set_mname(tp);
     did_hit = FALSE;
-    has_hit = (terse && !to_death);
+    has_hit = FALSE;
     if (roll_em(&player, tp, weap, thrown))
     {
 	did_hit = FALSE;
 	if (thrown)
-	    thunk(weap, mname, terse);
+	    thunk(weap, mname, FALSE);
 	else
-	    hit((char *) NULL, mname, terse);
+	    hit((char *) NULL, mname, FALSE);
 	if (on(player, CANHUH))
 	{
 	    did_hit = TRUE;
@@ -127,9 +127,9 @@ bool thrown;
     }
     else
 	if (thrown)
-	    bounce(weap, mname, terse);
+	    bounce(weap, mname, FALSE);
 	else
-	    miss((char *) NULL, mname, terse);
+	    miss((char *) NULL, mname, FALSE);
     return did_hit;
 }
 
@@ -201,8 +201,7 @@ register THING *mp;
 		    if (!no_command)
 		    {
 			addmsg("you are frozen");
-			if (!terse)
-			    addmsg(" by the %s", mname);
+			addmsg(" by the %s", mname);
 			endmsg();
 		    }
 		    no_command += rnd(2) + 2;
@@ -216,16 +215,10 @@ register THING *mp;
 			if (!ISWEARING(R_SUSTSTR))
 			{
 			    chg_str(-1);
-			    if (!terse)
-				msg("you feel a bite in your leg and now feel weaker");
-			    else
-				msg("a bite has weakened you");
+			    msg("you feel a bite in your leg and now feel weaker");
 			}
 			else if (!to_death)
-			    if (!terse)
-				msg("a bite momentarily weakens you");
-			    else
-				msg("bite has no effect");
+			    msg("a bite momentarily weakens you");
 		when 'W':
 		case 'V':
 		    /*
@@ -351,7 +344,7 @@ register THING *tp;
     static char tbuf[MAXSTR] = { 't', 'h', 'e', ' ' };
 
     if (!see_monst(tp) && !on(player, SEEMONST))
-	return (terse ? "it" : "something");
+	return ("something");
     else if (on(player, ISHALU))
     {
 	move(tp->t_pos.y, tp->t_pos.x);
@@ -532,18 +525,12 @@ bool noend;
     if (to_death)
 	return;
     addmsg(prname(er, TRUE));
-    if (terse)
-	s = " hit";
-    else
-    {
-	i = rnd(4);
-	if (er != NULL)
-	    i += 4;
-	s = h_names[i];
-    }
+    i = rnd(4);
+    if (er != NULL)
+	i += 4;
+    s = h_names[i];
     addmsg(s);
-    if (!terse)
-	addmsg(prname(ee, FALSE));
+    addmsg(prname(ee, FALSE));
     if (!noend)
 	endmsg();
 }
@@ -562,15 +549,11 @@ bool noend;
     if (to_death)
 	return;
     addmsg(prname(er, TRUE));
-    if (terse)
-	i = 0;
-    else
-	i = rnd(4);
+    i = rnd(4);
     if (er != NULL)
 	i += 4;
     addmsg(m_names[i]);
-    if (!terse)
-	addmsg(" %s", prname(ee, FALSE));
+    addmsg(" %s", prname(ee, FALSE));
     if (!noend)
 	endmsg();
 }
@@ -680,9 +663,7 @@ bool pr;
 	}
 	else
 	{
-	    if (!terse)
-		addmsg("you have ");
-	    addmsg("defeated ");
+	    addmsg("you have defeated ");
 	}
 	msg(mname);
     }

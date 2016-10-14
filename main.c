@@ -270,7 +270,6 @@ playit()
     if (baudrate() <= 1200)
 #endif	/* attron */
     {
-	terse = TRUE;
 	jump = TRUE;
 	see_floor = FALSE;
     }

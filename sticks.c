@@ -81,8 +81,7 @@ do_zap()
 		 */
 		enter_room(&hero);
 		addmsg("the room is lit");
-		if (!terse)
-		    addmsg(" by a shimmering %s light", pick_color("blue"));
+		addmsg(" by a shimmering %s light", pick_color("blue"));
 		endmsg();
 	    }
 	when WS_DRAIN:
@@ -183,8 +182,6 @@ do_zap()
 	    if ((tp = moat(bolt.o_pos.y, bolt.o_pos.x)) != NULL
 		&& !save_throw(VS_MAGIC, tp))
 		    hit_monster(unc(bolt.o_pos), &bolt);
-	    else if (terse)
-		msg("missle vanishes");
 	    else
 		msg("the missle vanishes with a puff of smoke");
 	when WS_HASTE_M:
@@ -361,8 +358,7 @@ def:
 			if (tp->t_type == 'D' && strcmp(name, "flame") == 0)
 			{
 			    addmsg("the flame bounces");
-			    if (!terse)
-				addmsg(" off the dragon");
+			    addmsg(" off the dragon");
 			    endmsg();
 			}
 			else
@@ -372,10 +368,7 @@ def:
 		    {
 			if (start == &hero)
 			    runto(&pos);
-			if (terse)
-			    msg("%s misses", name);
-			else
-			    msg("the %s whizzes past %s", name, set_mname(tp));
+			msg("the %s whizzes past %s", name, set_mname(tp));
 		    }
 		}
 		else if (hit_hero && ce(pos, hero))
@@ -390,10 +383,7 @@ def:
 			    else
 				death(moat(start->y, start->x)->t_type);
 			used = TRUE;
-			if (terse)
-			    msg("the %s hits", name);
-			else
-			    msg("you are hit by the %s", name);
+			msg("you are hit by the %s", name);
 		    }
 		    else
 			msg("the %s whizzes by you", name);
@@ -417,8 +407,6 @@ charge_str(THING *obj)
 
     if (!(obj->o_flags & ISKNOW))
 	buf[0] = '\0';
-    else if (terse)
-	sprintf(buf, " [%d]", obj->o_charges);
     else
 	sprintf(buf, " [%d charges]", obj->o_charges);
     return buf;

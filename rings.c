@@ -31,10 +31,7 @@ ring_on()
 	return;
     if (obj->o_type != RING)
     {
-	if (!terse)
-	    msg("it would be difficult to wrap that around a finger");
-	else
-	    msg("not a ring");
+	msg("it would be difficult to wrap that around a finger");
 	return;
     }
 
@@ -55,10 +52,7 @@ ring_on()
 	ring = RIGHT;
     else
     {
-	if (!terse)
-	    msg("you already have a ring on each hand");
-	else
-	    msg("wearing two");
+	msg("you already have a ring on each hand");
 	return;
     }
     cur_ring[ring] = obj;
@@ -79,8 +73,7 @@ ring_on()
 	    break;
     }
 
-    if (!terse)
-	addmsg("you are now wearing ");
+    addmsg("you are now wearing ");
     msg("%s (%c)", inv_name(obj, TRUE), obj->o_packch);
 }
 
@@ -96,10 +89,7 @@ ring_off()
 
     if (cur_ring[LEFT] == NULL && cur_ring[RIGHT] == NULL)
     {
-	if (terse)
-	    msg("no rings");
-	else
-	    msg("you aren't wearing any rings");
+	msg("you aren't wearing any rings");
 	return;
     }
     else if (cur_ring[LEFT] == NULL)
@@ -131,10 +121,7 @@ gethand()
 
     for (;;)
     {
-	if (terse)
-	    msg("left or right ring? ");
-	else
-	    msg("left hand or right hand? ");
+	msg("left hand or right hand? ");
 	if ((c = readchar()) == ESCAPE)
 	    return -1;
 	mpos = 0;
@@ -142,10 +129,7 @@ gethand()
 	    return LEFT;
 	else if (c == 'r' || c == 'R')
 	    return RIGHT;
-	if (terse)
-	    msg("L or R");
-	else
-	    msg("please type L or R");
+	msg("please type L or R");
     }
 }
 

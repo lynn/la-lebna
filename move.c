@@ -412,9 +412,6 @@ rust_armor(THING *arm)
     else
     {
 	arm->o_arm++;
-	if (!terse)
-	    msg("your armor appears to be weaker now. Oh my!");
-	else
-	    msg("your armor weakens");
+	msg("your armor appears to be weaker now. Oh my!");
     }
 }

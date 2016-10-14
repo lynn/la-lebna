@@ -81,7 +81,7 @@ do_motion(THING *obj, int ydelta, int xdelta)
 	/*
 	 * Erase the old one
 	 */
-	if (!ce(obj->o_pos, hero) && cansee(unc(obj->o_pos)) && !terse)
+	if (!ce(obj->o_pos, hero) && cansee(unc(obj->o_pos)))
 	{
 	    ch = chat(obj->o_pos.y, obj->o_pos.x);
 	    if (ch == FLOOR && !show_floor())
@@ -99,7 +99,7 @@ do_motion(THING *obj, int ydelta, int xdelta)
 	     * It hasn't hit anything yet, so display it
 	     * If it alright.
 	     */
-	    if (cansee(unc(obj->o_pos)) && !terse)
+	    if (cansee(unc(obj->o_pos)))
 	    {
 		mvaddch(obj->o_pos.y, obj->o_pos.x, obj->o_type);
 		refresh();
@@ -243,7 +243,6 @@ bad:
 
     sp = inv_name(obj, TRUE);
     cur_weapon = obj;
-    if (!terse)
 	addmsg("you are now ");
     msg("wielding %s (%c)", sp, obj->o_packch);
 }

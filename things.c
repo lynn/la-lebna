@@ -93,7 +93,6 @@ inv_name(THING *obj, bool drop)
 	    {
 		sprintf(pb, "%s %s [",
 		    num(a_class[which] - obj->o_arm, 0, ARMOR), sp);
-		if (!terse)
 		    strcat(pb, "protection ");
 		pb = &prbuf[strlen(prbuf)];
 		sprintf(pb, "%d]", 10 - obj->o_arm);
@@ -346,10 +345,8 @@ discovered()
 
     do {
 	disc_list = FALSE;
-	if (!terse)
-	    addmsg("for ");
+	addmsg("for ");
 	addmsg("what type");
-	if (!terse)
 	    addmsg(" of object do you want a list");
 	msg("? (* for all)");
 	ch = readchar();
@@ -366,10 +363,7 @@ discovered()
 		disc_list = TRUE;
 		break;
 	    default:
-		if (terse)
-		    msg("Not a type");
-		else
-		    msg("Please type one of %c%c%c%c (ESCAPE to quit)", POTION, SCROLL, RING, STICK);
+		msg("Please type one of %c%c%c%c (ESCAPE to quit)", POTION, SCROLL, RING, STICK);
 	}
     } while (!disc_list);
     if (ch == '*')
@@ -584,10 +578,7 @@ nothing(char type)
 {
     char *sp, *tystr = NULL;
 
-    if (terse)
-	sprintf(prbuf, "Nothing");
-    else
-	sprintf(prbuf, "Haven't discovered anything");
+    sprintf(prbuf, "Haven't discovered anything");
     if (type != '*')
     {
 	sp = &prbuf[strlen(prbuf)];
@@ -651,12 +642,7 @@ pr_list()
 {
     int ch;
 
-    if (!terse)
-	addmsg("for ");
-    addmsg("what type");
-    if (!terse)
-	addmsg(" of object do you want a list");
-    msg("? ");
+    msg("for what type of object do you want a list? ");
     ch = readchar();
     switch (ch)
     {

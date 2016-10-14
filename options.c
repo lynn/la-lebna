@@ -43,8 +43,6 @@ typedef struct optstruct	OPTION;
 int	pr_optname(OPTION *op);
 
 OPTION	optlist[] = {
-    {"terse",	 "Terse output",
-		 (int *) &terse,	put_bool,	get_bool	},
     {"flush",	 "Flush typeahead during battle",
 		(int *) &fight_flush,	put_bool,	get_bool	},
     {"jump",	 "Show position only at end of run",
