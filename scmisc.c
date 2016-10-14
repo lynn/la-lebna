@@ -35,12 +35,12 @@ char *lockfile = "/tmp/.fredlock";
 char prbuf[MAXSTR];			/* buffer for sprintfs */
 
 MONST	monsters[] = {
-	{ "aquator" }, { "bat" }, { "centaur" }, { "dragon" }, { "emu" },
-	{ "venus flytrap" }, { "griffin" }, { "hobgoblin" }, { "ice monster" },
-	{ "jabberwock" }, { "kobold" }, { "leprechaun" }, { "medusa" },
-	{ "nymph" }, { "orc" }, { "phantom" }, { "quasit" }, { "rattlesnake" },
-	{ "snake" }, { "troll" }, { "ur-vile" }, { "vampire" }, { "wraith" },
-	{ "xeroc" }, { "yeti" }, { "zombie" }
+	{ "tirfurgau" }, { "bi'anfu" }, { "kentauru" }, { "drakono" }, { "dromaiu" },
+	{ "diionaia" }, { "grifone" }, { "xobgobeli" }, { "dujda'u" },
+	{ "djabervoki" }, { "ridrkoboldo" }, { "dincrida" }, { "rokybixygau" },
+	{ "ridrnimfe" }, { "orxo" }, { "pruxi" }, { "ku'arzito" }, { "desysince" },
+	{ "since" }, { "tro'olo" }, { "urvaile" }, { "vampire" }, { "ruxpre" },
+	{ "fukcrida" }, { "bisycrida" }, { "zo'ombi" }
 };
 
 /*
@@ -181,36 +181,28 @@ char *
 s_killname(char monst, bool doart)
 {
     char *sp;
-    bool article;
 
-    article = TRUE;
     switch (monst)
     {
 	case 'a':
-	    sp = "arrow";
+	    sp = "celga'a";
 	when 'b':
-	    sp = "bolt";
+	    sp = "se skogarce'a";
 	when 'd':
-	    sp = "dart";
+	    sp = "danti";
 	when 's':
-	    sp = "starvation";
-	    article = FALSE;
+	    sp = "nu djacau";
 	when 'h':
-	    sp = "hypothermia";
-	    article = FALSE;
+	    sp = "nu lekmorsi";
 	otherwise:
 	    if (isupper(monst))
 		sp = monsters[monst-'A'].m_name;
 	    else
 	    {
-		sp = "God";
-		article = FALSE;
+		sp = "cevni";
 	    }
     }
-    if (doart && article)
-	sprintf(prbuf, "a%s ", s_vowelstr(sp));
-    else
-	prbuf[0] = '\0';
+    sprintf(prbuf, "lo ");
     strcat(prbuf, sp);
     return prbuf;
 }

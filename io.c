@@ -12,7 +12,7 @@
  * msg:
  *	Display a message at the top of the screen.
  */
-#define MAXMSG	(NUMCOLS - sizeof "--More--")
+#define MAXMSG	(NUMCOLS - sizeof " (tomu'onaitoi)")
 
 static char msgbuf[2*MAXMSG+1];
 static int newpos = 0;
@@ -69,7 +69,7 @@ endmsg()
     if (mpos)
     {
 	look(FALSE);
-	mvaddstr(0, mpos, "--More--");
+	mvaddstr(0, mpos, " (tomu'onaitoi)");
 	refresh();
 	if (!msg_esc)
 	    wait_for(' ');
@@ -90,8 +90,10 @@ endmsg()
      * All messages should start with uppercase, except ones that
      * start with a pack addressing character
      */
+    /*
     if (islower(msgbuf[0]) && !lower_msg && msgbuf[1] != ')')
 	msgbuf[0] = toupper(msgbuf[0]);
+    */
     mvaddstr(0, 0, msgbuf);
     clrtoeol();
     mpos = newpos;
@@ -172,7 +174,7 @@ status()
     static long s_exp = 0;
     static char *state_name[] =
     {
-	"", "Hungry", "Weak", "Faint"
+	"", "xagji", "ruble", "djacau"
     };
 
     /*
@@ -211,7 +213,7 @@ status()
     if (stat_msg)
     {
 	move(0, 0);
-        msg("Level: %d  Gold: %-5d  Hp: %*d(%*d)  Str: %2d(%d)  Arm: %-2d  Exp: %d/%ld  %s",
+        msg("nilcre %d  rupnu %d  nilka'o %*d(%*d)  niltsa %2d(%d)  nilbandu %-1d  crelai %d/%ld  %s",
 	    level, purse, hpwidth, pstats.s_hpt, hpwidth, max_hp, pstats.s_str,
 	    max_stats.s_str, 10 - s_arm, pstats.s_lvl, pstats.s_exp,
 	    state_name[hungry_state]);
@@ -220,7 +222,7 @@ status()
     {
 	move(STATLINE, 0);
                 
-        printw("Level: %d  Gold: %-5d  Hp: %*d(%*d)  Str: %2d(%d)  Arm: %-2d  Exp: %d/%ld  %s",
+        printw("nilcre %d  rupnu %d  nilka'o %*d(%*d)  niltsa %2d(%d)  nilbandu %-2d  crelai %d/%ld  %s",
 	    level, purse, hpwidth, pstats.s_hpt, hpwidth, max_hp, pstats.s_str,
 	    max_stats.s_str, 10 - s_arm, pstats.s_lvl, pstats.s_exp,
 	    state_name[hungry_state]);
