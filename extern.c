@@ -65,26 +65,26 @@ char *ws_type[MAXSTICKS];		/* Is it a wand or a staff */
 char orig_dsusp;			/* Original dsusp char */
 #endif
 char fruit[MAXSTR] =			/* Favorite fruit */
-		{ 's', 'l', 'i', 'm', 'e', '-', 'm', 'o', 'l', 'd', '\0' };
+		{ 'j', 'b', 'o', 'g', 'r', 'u', 't', 'e', '\0' };
 char home[MAXSTR] = { '\0' };		/* User's home directory */
 char *inv_t_name[] = {
-	"Overwrite",
-	"Slow",
-	"Clear"
+	"galfi ciska",
+	"masno ciska",
+	"vimcu je ciska"
 };
 char l_last_comm = '\0';		/* Last last_comm */
 char l_last_dir = '\0';			/* Last last_dir */
 char last_comm = '\0';			/* Last command typed */
 char last_dir = '\0';			/* Last direction given */
 char *tr_name[] = {			/* Names of the traps */
-	"a trapdoor",
-	"an arrow trap",
-	"a sleeping gas trap",
-	"a beartrap",
-	"a teleport trap",
-	"a poison dart trap",
-	"a rust trap",
-        "a mysterious trap"
+	"lo lolvrogai",
+	"lo celga'a te kavbu",
+	"lo sipna gapci te kavbu",
+	"lo batci te kavbu",
+	"lo skumu'u te kavbu",
+	"lo vindu danti te kavbu",
+	"lo furtifa gasnu te kavbu",
+        "lo se naljmi kavbu"
 };
 
 
@@ -190,34 +190,34 @@ struct room passages[MAXPASS] =		/* One for each passage */
 struct monster monsters[26] =
     {
 /* Name		 CARRY	FLAG    str, exp, lvl, amr, hpt, dmg */
-{ "aquator",	   0,	ISMEAN,	{ XX, 20,   5,   2, ___, "0x0/0x0" } },
-{ "bat",	   0,	ISFLY,	{ XX,  1,   1,   3, ___, "1x2" } },
-{ "centaur",	  15,	0,	{ XX, 17,   4,   4, ___, "1x2/1x5/1x5" } },
-{ "dragon",	 100,	ISMEAN,	{ XX,5000, 10,  -1, ___, "1x8/1x8/3x10" } },
-{ "emu",	   0,	ISMEAN,	{ XX,  2,   1,   7, ___, "1x2" } },
-{ "venus flytrap", 0,	ISMEAN,	{ XX, 80,   8,   3, ___, "%%%x0" } },
+{ "tirfurgau",     0,	ISMEAN,	{ XX, 20,   5,   2, ___, "0x0/0x0" } },
+{ "bi'anfu",       0,	ISFLY,	{ XX,  1,   1,   3, ___, "1x2" } },
+{ "kentauru",	  15,	0,	{ XX, 17,   4,   4, ___, "1x2/1x5/1x5" } },
+{ "drakono",	 100,	ISMEAN,	{ XX,5000, 10,  -1, ___, "1x8/1x8/3x10" } },
+{ "dromaiu",	   0,	ISMEAN,	{ XX,  2,   1,   7, ___, "1x2" } },
+{ "diionaia",      0,	ISMEAN,	{ XX, 80,   8,   3, ___, "%%%x0" } },
 	/* NOTE: the damage is %%% so that xstr won't merge this */
 	/* string with others, since it is written on in the program */
-{ "griffin",	  20,	ISMEAN|ISFLY|ISREGEN, { XX,2000, 13,   2, ___, "4x3/3x5" } },
-{ "hobgoblin",	   0,	ISMEAN,	{ XX,  3,   1,   5, ___, "1x8" } },
-{ "ice monster",   0,	0,	{ XX,  5,   1,   9, ___, "0x0" } },
-{ "jabberwock",   70,	0,	{ XX,3000, 15,   6, ___, "2x12/2x4" } },
-{ "kestrel",	   0,	ISMEAN|ISFLY,	{ XX,  1,   1,   7, ___, "1x4" } },
-{ "leprechaun",	   0,	0,	{ XX, 10,   3,   8, ___, "1x1" } },
-{ "medusa",	  40,	ISMEAN,	{ XX,200,   8,   2, ___, "3x4/3x4/2x5" } },
-{ "nymph",	 100,	0,	{ XX, 37,   3,   9, ___, "0x0" } },
-{ "orc",	  15,	ISGREED,{ XX,  5,   1,   6, ___, "1x8" } },
-{ "phantom",	   0,	ISINVIS,{ XX,120,   8,   3, ___, "4x4" } },
-{ "quagga",	   0,	ISMEAN,	{ XX, 15,   3,   3, ___, "1x5/1x5" } },
-{ "rattlesnake",   0,	ISMEAN,	{ XX,  9,   2,   3, ___, "1x6" } },
-{ "snake",	   0,	ISMEAN,	{ XX,  2,   1,   5, ___, "1x3" } },
-{ "troll",	  50,	ISREGEN|ISMEAN,{ XX, 120, 6, 4, ___, "1x8/1x8/2x6" } },
-{ "black unicorn", 0,	ISMEAN,	{ XX,190,   7,  -2, ___, "1x9/1x9/2x9" } },
+{ "grifone",	  20,	ISMEAN|ISFLY|ISREGEN, { XX,2000, 13,   2, ___, "4x3/3x5" } },
+{ "xobgobeli",	   0,	ISMEAN,	{ XX,  3,   1,   5, ___, "1x8" } },
+{ "dujda'u",       0,	0,	{ XX,  5,   1,   9, ___, "0x0" } },
+{ "djabervoki",   70,	0,	{ XX,3000, 15,   6, ___, "2x12/2x4" } },
+{ "katcipni",	   0,	ISMEAN|ISFLY,	{ XX,  1,   1,   7, ___, "1x4" } },
+{ "dincrida",	   0,	0,	{ XX, 10,   3,   8, ___, "1x1" } },
+{ "rokybixygau",  40,	ISMEAN,	{ XX,200,   8,   2, ___, "3x4/3x4/2x5" } },
+{ "ridrnimfe",	 100,	0,	{ XX, 37,   3,   9, ___, "0x0" } },
+{ "orxo",	  15,	ISGREED,{ XX,  5,   1,   6, ___, "1x8" } },
+{ "pruxi",	   0,	ISINVIS,{ XX,120,   8,   3, ___, "4x4" } },
+{ "xirnku'aga",	   0,	ISMEAN,	{ XX, 15,   3,   3, ___, "1x5/1x5" } },
+{ "desysince",     0,	ISMEAN,	{ XX,  9,   2,   3, ___, "1x6" } },
+{ "since",	   0,	ISMEAN,	{ XX,  2,   1,   5, ___, "1x3" } },
+{ "tro'olo",	  50,	ISREGEN|ISMEAN,{ XX, 120, 6, 4, ___, "1x8/1x8/2x6" } },
+{ "pavyseljirna",  0,	ISMEAN,	{ XX,190,   7,  -2, ___, "1x9/1x9/2x9" } },
 { "vampire",	  20,	ISREGEN|ISMEAN,{ XX,350,   8,   1, ___, "1x10" } },
-{ "wraith",	   0,	0,	{ XX, 55,   5,   4, ___, "1x6" } },
-{ "xeroc",	  30,	0,	{ XX,100,   7,   7, ___, "4x4" } },
-{ "yeti",	  30,	0,	{ XX, 50,   4,   6, ___, "1x6/1x6" } },
-{ "zombie",	   0,	ISMEAN,	{ XX,  6,   2,   8, ___, "1x8" } }
+{ "ruxpre",	   0,	0,	{ XX, 55,   5,   4, ___, "1x6" } },
+{ "fukcrida",	  30,	0,	{ XX,100,   7,   7, ___, "4x4" } },
+{ "bisycrida",	  30,	0,	{ XX, 50,   4,   6, ___, "1x6/1x6" } },
+{ "zo'ombi",	   0,	ISMEAN,	{ XX,  6,   2,   8, ___, "1x8" } }
     };
 #undef ___
 #undef XX
@@ -233,77 +233,77 @@ struct obj_info things[NUMTHINGS] = {
 };
 
 struct obj_info arm_info[MAXARMORS] = {
-    { "leather armor",		 20,	 20, NULL, FALSE },
-    { "ring mail",		 15,	 25, NULL, FALSE },
-    { "studded leather armor",	 15,	 20, NULL, FALSE },
-    { "scale mail",		 13,	 30, NULL, FALSE },
-    { "chain mail",		 12,	 75, NULL, FALSE },
-    { "splint mail",		 10,	 80, NULL, FALSE },
-    { "banded mail",		 10,	 90, NULL, FALSE },
-    { "plate mail",		  5,	150, NULL, FALSE },
+    { "lo skapi taxfu",		 20,	 20, NULL, FALSE },
+    { "lo jimdjine taxfu",	 15,	 25, NULL, FALSE },
+    { "lo jinme skapi taxfu",	 15,	 20, NULL, FALSE },
+    { "lo jimtapla taxfu",	 13,	 30, NULL, FALSE },
+    { "lo linsi taxfu",		 12,	 75, NULL, FALSE },
+    { "lo tirse taxfu",		 10,	 80, NULL, FALSE },
+    { "lo tilju taxfu",		 10,	 90, NULL, FALSE },
+    { "lo tijytce taxfu",	  5,	150, NULL, FALSE },
 };
 struct obj_info pot_info[MAXPOTIONS] = {
-    { "confusion",		 7,   5, NULL, FALSE },
-    { "hallucination",		 8,   5, NULL, FALSE },
-    { "poison",			 8,   5, NULL, FALSE },
-    { "gain strength",		13, 150, NULL, FALSE },
-    { "see invisible",		 3, 100, NULL, FALSE },
-    { "healing",		13, 130, NULL, FALSE },
-    { "monster detection",	 6, 130, NULL, FALSE },
-    { "magic detection",	 6, 105, NULL, FALSE },
-    { "raise level",		 2, 250, NULL, FALSE },
-    { "extra healing",		 5, 200, NULL, FALSE },
-    { "haste self",		 5, 190, NULL, FALSE },
-    { "restore strength",	13, 130, NULL, FALSE },
-    { "blindness",		 5,   5, NULL, FALSE },
-    { "levitation",		 6,  75, NULL, FALSE },
+    { "cfipu",			 7,   5, NULL, FALSE },
+    { "xumsne",			 8,   5, NULL, FALSE },
+    { "vindu",			 8,   5, NULL, FALSE },
+    { "tsali zenba",		13, 150, NULL, FALSE },
+    { "narselviska'e viska",	 3, 100, NULL, FALSE },
+    { "kanro zenba",		13, 130, NULL, FALSE },
+    { "monsuta ganse",		 6, 130, NULL, FALSE },
+    { "makfa ganse",		 6, 105, NULL, FALSE },
+    { "certu zenba",		 2, 250, NULL, FALSE },
+    { "kanro zenba mutce",	 5, 200, NULL, FALSE },
+    { "sutra zenba",		 5, 190, NULL, FALSE },
+    { "kanro xrugau",		13, 130, NULL, FALSE },
+    { "narviska'egau",		 5,   5, NULL, FALSE },
+    { "volgau",			 6,  75, NULL, FALSE },
 };
 struct obj_info ring_info[MAXRINGS] = {
-    { "protection",		 9, 400, NULL, FALSE },
-    { "add strength",		 9, 400, NULL, FALSE },
-    { "sustain strength",	 5, 280, NULL, FALSE },
-    { "searching",		10, 420, NULL, FALSE },
-    { "see invisible",		10, 310, NULL, FALSE },
-    { "adornment",		 1,  10, NULL, FALSE },
-    { "aggravate monster",	10,  10, NULL, FALSE },
-    { "dexterity",		 8, 440, NULL, FALSE },
-    { "increase damage",	 8, 400, NULL, FALSE },
-    { "regeneration",		 4, 460, NULL, FALSE },
-    { "slow digestion",		 9, 240, NULL, FALSE },
-    { "teleportation",		 5,  30, NULL, FALSE },
+    { "bandu",			 9, 400, NULL, FALSE },
+    { "tsali jmina",		 9, 400, NULL, FALSE },
+    { "tsali ranji",		 5, 280, NULL, FALSE },
+    { "sisku",			10, 420, NULL, FALSE },
+    { "narselviska'e viska",	10, 310, NULL, FALSE },
+    { "jadni",			 1,  10, NULL, FALSE },
+    { "monsuta fanza",		10,  10, NULL, FALSE },
+    { "xancre",			 8, 440, NULL, FALSE },
+    { "xrani jmina",		 8, 400, NULL, FALSE },
+    { "ka'orbi'o",		 4, 460, NULL, FALSE },
+    { "norxagji ranji",		 9, 240, NULL, FALSE },
+    { "skumu'u",		 5,  30, NULL, FALSE },
     { "stealth",		 7, 470, NULL, FALSE },
-    { "maintain armor",		 5, 380, NULL, FALSE },
+    { "taxfu nurgau",		 5, 380, NULL, FALSE },
 };
 struct obj_info scr_info[MAXSCROLLS] = {
-    { "monster confusion",		 7, 140, NULL, FALSE },
+    { "monsuta cfipu",			 7, 140, NULL, FALSE },
     { "magic mapping",			 4, 150, NULL, FALSE },
-    { "hold monster",			 2, 180, NULL, FALSE },
-    { "sleep",				 3,   5, NULL, FALSE },
-    { "enchant armor",			 7, 160, NULL, FALSE },
-    { "identify potion",		10,  80, NULL, FALSE },
-    { "identify scroll",		10,  80, NULL, FALSE },
-    { "identify weapon",		 6,  80, NULL, FALSE },
-    { "identify armor",		 	 7, 100, NULL, FALSE },
-    { "identify ring, wand or staff",	10, 115, NULL, FALSE },
-    { "scare monster",			 3, 200, NULL, FALSE },
-    { "food detection",			 2,  60, NULL, FALSE },
-    { "teleportation",			 5, 165, NULL, FALSE },
-    { "enchant weapon",			 8, 150, NULL, FALSE },
-    { "create monster",			 4,  75, NULL, FALSE },
-    { "remove curse",			 7, 105, NULL, FALSE },
-    { "aggravate monsters",		 3,  20, NULL, FALSE },
-    { "protect armor",			 2, 250, NULL, FALSE },
+    { "monsuta muvstigau",		 2, 180, NULL, FALSE },
+    { "sipna",				 3,   5, NULL, FALSE },
+    { "taxfu xagzengau",		 7, 160, NULL, FALSE },
+    { "maflitki facki",			11,  80, NULL, FALSE },
+    { "papri facki",			10,  80, NULL, FALSE },
+    { "xarci facki",			 6,  80, NULL, FALSE },
+    { "taxfu facki",			 7, 100, NULL, FALSE },
+    { "djine ja grana facki",		10, 115, NULL, FALSE },
+    { "monsuta terpygau",		 3, 200, NULL, FALSE },
+    { "cidja ganse",			 2,  60, NULL, FALSE },
+    { "skumu'u",			 5, 165, NULL, FALSE },
+    { "xarci xagzengau",		 8, 150, NULL, FALSE },
+    { "monsuta klami'e",		 4,  75, NULL, FALSE },
+    { "maldimna vimcu",			 7, 105, NULL, FALSE },
+    { "monsuta fanza",			 3,  20, NULL, FALSE },
+    { "taxfu nurgau",			 2, 250, NULL, FALSE },
 };
 struct obj_info weap_info[MAXWEAPONS + 1] = {
-    { "mace",				11,   8, NULL, FALSE },
-    { "long sword",			11,  15, NULL, FALSE },
-    { "short bow",			12,  15, NULL, FALSE },
-    { "arrow",				12,   1, NULL, FALSE },
-    { "dagger",				 8,   3, NULL, FALSE },
-    { "two handed sword",		10,  75, NULL, FALSE },
-    { "dart",				12,   2, NULL, FALSE },
-    { "shuriken",			12,   5, NULL, FALSE },
-    { "spear",				12,   5, NULL, FALSE },
+    { "bolga'axa'i",			11,   8, NULL, FALSE },
+    { "cladaxi",			11,  15, NULL, FALSE },
+    { "bagyce'a",			12,  15, NULL, FALSE },
+    { "celga'a",			12,   1, NULL, FALSE },
+    { "dakyxa'i",			 8,   3, NULL, FALSE },
+    { "relxandakyxa'i",			10,  75, NULL, FALSE },
+    { "danti",				12,   2, NULL, FALSE },
+    { "jindydanti",			12,   5, NULL, FALSE },
+    { "kilga'a",			12,   5, NULL, FALSE },
     { NULL, 0 },	/* DO NOT REMOVE: fake entry for dragon's breath */
 };
 struct obj_info ws_info[MAXSTICKS] = {
