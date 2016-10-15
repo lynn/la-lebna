@@ -58,7 +58,7 @@ take_off()
     if (!dropcheck(cur_armor))
 	return;
     cur_armor = NULL;
-    msg(".i do pu dasni %c) %s", obj->o_packch, inv_name(obj, TRUE));
+    msg(".i do pu dasni %c goi %s", obj->o_packch, inv_name(obj, TRUE));
 }
 
 /*

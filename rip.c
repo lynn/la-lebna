@@ -392,10 +392,10 @@ total_winner()
 	}
 	if (worth < 0)
 	    worth = 0;
-	printw("%c) %5d  %s\n", obj->o_packch, worth, inv_name(obj, FALSE));
+	printw("%c (to %5d rupnu toi) goi %s\n", obj->o_packch, worth, inv_name(obj, FALSE));
 	purse += worth;
     }
-    printw("   %5d  Gold Pieces          ", oldpurse);
+    printw("   %5d  rupnu                ", oldpurse);
     refresh();
     score(purse, 2, ' ');
     my_exit(0);

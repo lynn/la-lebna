@@ -73,8 +73,7 @@ ring_on()
 	    break;
     }
 
-    addmsg(".i ca'o dasni ");
-    msg("%s (%c)", inv_name(obj, TRUE), obj->o_packch);
+    msg(".i co'a dasni %c goi %s", obj->o_packch, inv_name(obj, TRUE));
 }
 
 /*
@@ -103,11 +102,11 @@ ring_off()
     obj = cur_ring[ring];
     if (obj == NULL)
     {
-	msg(".i ta na djine je ca'o se dasni");
+	msg(".i na djine je ca'o se dasni");
 	return;
     }
     if (dropcheck(obj))
-	msg(".i pu dasni %s(%c)", inv_name(obj, TRUE), obj->o_packch);
+	msg(".i co'u dasni %c goi %s", obj->o_packch, inv_name(obj, TRUE));
 }
 
 /*

@@ -86,7 +86,7 @@ command()
 	    if (--no_command == 0)
 	    {
 		player.t_flags |= ISRUN;
-		msg("you can move again");
+		msg(".i do di'a ka'e muvdu");
 	    }
 	}
 	else
@@ -166,7 +166,7 @@ over:
 			    pick_up(obj->o_type);
 		    }
 		    else {
-			msg("there is nothing here to pick up");
+			msg(".i no da va ka'e se lebna");
 		    }
 		}
 		when '!': shell();
@@ -217,8 +217,7 @@ over:
 		    if (((mp = moat(delta.y, delta.x)) == NULL
 			|| (!see_monst(mp)) && !on(player, SEEMONST)))
 		    {
-			addmsg("I see ");
-			msg("no monster there");
+			msg(".i no da va monsuta");
 			after = FALSE;
 		    }
 		    else if (diag_ok(&hero, &delta))
@@ -237,7 +236,7 @@ over:
 		when 'a':
 		    if (last_comm == '\0')
 		    {
-			msg("you haven't typed a command yet");
+			msg(".i do ba'o samci'a no se minde");
 			after = FALSE;
 		    }
 		    else
@@ -282,7 +281,7 @@ over:
 		    wrefresh(curscr);
 		when 'v':
 		    after = FALSE;
-		    msg("version %s. (mctesq was here)", release);
+		    msg(".i la'oi %s versiio .i fanva fa la lalxu", release);
 		when 'S': 
 		    after = FALSE;
 		    save_game();
@@ -294,9 +293,9 @@ over:
 			delta.y += hero.y;
 			delta.x += hero.x;
 			fp = &flat(delta.y, delta.x);
-			addmsg("You have found ");
+			addmsg(".i do facki fi ");
 			if (chat(delta.y, delta.x) != TRAP)
-			    msg("no trap there");
+			    msg("no te kavbu");
 			else if (on(player, ISHALU))
 			    msg(tr_name[rnd(NTRAPS)]);
 			else {
@@ -311,7 +310,7 @@ over:
 		    {
 			wizard = FALSE;
 			turn_see(TRUE);
-			msg("not wizard any more");
+			msg(".i co'u mafpre");
 		    }
 		    else
 		    {
@@ -319,10 +318,10 @@ over:
 			{
 			    noscore = TRUE;
 			    turn_see(FALSE);
-			    msg("you are suddenly as smart as Ken Arnold in dungeon #%d", dnum);
+			    msg(".i do suksa co'a simsa la .ken.arnld. lo ni mencre ku bu'u lo %dmoi kevdi'u", dnum);
 			}
 			else
-			    msg("sorry");
+			    msg(".i .e'anai .u'u");
 		    }
 #endif
 		when ESCAPE:	/* Escape */
@@ -340,11 +339,11 @@ over:
 			countch = dir_ch;
 			goto over;
 		    }
-		when ')': current(cur_weapon, "wielding", NULL);
-		when ']': current(cur_armor, "wearing", NULL);
+		when ')': current(cur_weapon, "re'olte", NULL);
+		when ']': current(cur_armor, "dasni", NULL);
 		when '=':
-		    current(cur_ring[LEFT], "wearing", "on left hand");
-		    current(cur_ring[RIGHT], "wearing", "on right hand");
+		    current(cur_ring[LEFT], "dasni", "sedi'o lo zunle xance");
+		    current(cur_ring[RIGHT], "dasni", "sedi'o lo pritu xance");
 		when '@':
 		    stat_msg = TRUE;
 		    status();
@@ -364,14 +363,14 @@ over:
 			when CTRL('A'): level--; new_level();
 			when CTRL('F'): show_map();
 			when CTRL('T'): teleport();
-			when CTRL('E'): msg("food left: %d", food_left);
+			when CTRL('E'): msg("stali cidja: %d", food_left);
 			when CTRL('C'): add_pass();
 			when CTRL('X'): turn_see(on(player, SEEMONST));
 			when CTRL('~'):
 			{
 			    THING *item;
 
-			    if ((item = get_item("charge", STICK)) != NULL)
+			    if ((item = get_item("tcaxygau", STICK)) != NULL)
 				item->o_charges = 10000;
 			}
 			when CTRL('I'):
@@ -449,7 +448,7 @@ int ch;
 {
     save_msg = FALSE;
     count = 0;
-    msg("illegal command '%s'", unctrl(ch));
+    msg(".i zo'oi %s sinxa no da", unctrl(ch));
     save_msg = TRUE;
 }
 
@@ -484,7 +483,7 @@ search()
 			if (rnd(5 + probinc) != 0)
 			    break;
 			chat(y, x) = DOOR;
-                        msg("a secret door");
+                        msg(".i selmipri vorme");
 foundone:
 			found = TRUE;
 			*fp |= F_REAL;
@@ -495,7 +494,7 @@ foundone:
 			if (rnd(2 + probinc) != 0)
 			    break;
 			chat(y, x) = TRAP;
-			addmsg("you found ");
+			addmsg(".i do facki fi ");
 			if (on(player, ISHALU))
 			    msg(tr_name[rnd(NTRAPS)]);
 			else {
@@ -524,7 +523,7 @@ help()
     register struct h_list *strp;
     register char helpch;
     register int numprint, cnt;
-    msg("character you want help for (* for all): ");
+    msg(".i cilre fi mo'oi sinxa (to zo'oi * zo'u: ro sinxa toi): ");
     helpch = readchar();
     mpos = 0;
     /*
@@ -542,7 +541,7 @@ help()
 		lower_msg = FALSE;
 		return;
 	    }
-	msg("unknown character '%s'", unctrl(helpch));
+	msg(".i zo'oi %s sinxa no da", unctrl(helpch));
 	return;
     }
     /*
@@ -572,7 +571,7 @@ help()
 		break;
 	}
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, "--Press space to continue--");
+    waddstr(hw, ".i ko danre lo canlu bu batke");
     wrefresh(hw);
     wait_for(' ');
     clearok(stdscr, TRUE);
@@ -594,28 +593,28 @@ identify()
     register struct h_list *hp;
     register char *str;
     static struct h_list ident_list[] = {
-	'|',		"wall of a room",		FALSE,
-	'-',		"wall of a room",		FALSE,
-	GOLD,		"gold",				FALSE,
-	STAIRS,		"a staircase",			FALSE,
-	DOOR,		"door",				FALSE,
-	FLOOR,		"room floor",			FALSE,
-	PLAYER,		"you",				FALSE,
-	PASSAGE,	"passage",			FALSE,
-	TRAP,		"trap",				FALSE,
-	POTION,		"potion",			FALSE,
-	SCROLL,		"scroll",			FALSE,
-	FOOD,		"food",				FALSE,
-	WEAPON,		"weapon",			FALSE,
-	' ',		"solid rock",			FALSE,
-	ARMOR,		"armor",			FALSE,
-	AMULET,		"the Amulet of Yendor",		FALSE,
-	RING,		"ring",				FALSE,
-	STICK,		"wand or staff",		FALSE,
+	'|',		"kumfa bitmu",			FALSE,
+	'-',		"kumfa bitmu",			FALSE,
+	GOLD,		"rupnu",			FALSE,
+	STAIRS,		"serti",			FALSE,
+	DOOR,		"vorme",			FALSE,
+	FLOOR,		"loldi",			FALSE,
+	PLAYER,		"donpre",			FALSE,
+	PASSAGE,	"klaji",			FALSE,
+	TRAP,		"te kavbu",			FALSE,
+	POTION,		"maflitki",			FALSE,
+	SCROLL,		"papri",			FALSE,
+	FOOD,		"cidja",			FALSE,
+	WEAPON,		"xarci",			FALSE,
+	' ',		"rokci",			FALSE,
+	ARMOR,		"dabycalku",			FALSE,
+	AMULET,		"la .iendor jemna",		FALSE,
+	RING,		"djine",			FALSE,
+	STICK,		"grana",			FALSE,
 	'\0'
     };
 
-    msg("what do you want identified? ");
+    msg(".i do djica lo nu cmesanji ma ");
     ch = readchar();
     mpos = 0;
     if (ch == ESCAPE)
@@ -627,7 +626,7 @@ identify()
 	str = monsters[ch-'A'].m_name;
     else
     {
-	str = "unknown character";
+	str = ".i tolsau lerfu";
 	for (hp = ident_list; hp->h_ch != '\0'; hp++)
 	    if (hp->h_ch == ch)
 	    {
@@ -635,7 +634,7 @@ identify()
 		break;
 	    }
     }
-    msg("'%s': %s", unctrl(ch), str);
+    msg(".i zo'oi %s zo'u: %s", unctrl(ch), str);
 }
 
 /*
@@ -647,7 +646,7 @@ d_level()
     if (levit_check())
 	return;
     if (chat(hero.y, hero.x) != STAIRS)
-	msg("I see no way down");
+	msg(".i no da dizlo pluta");
     else
     {
 	level++;
@@ -671,12 +670,12 @@ u_level()
 	    if (level == 0)
 		total_winner();
 	    new_level();
-	    msg("you feel a wrenching sensation in your gut");
+	    msg(".i do xanka zo'e .i'unaidai");
 	}
 	else
-	    msg("your way is magically blocked");
+	    msg(".i makfa zunti tu'a lo ve klama");
     else
-	msg("I see no way up");
+	msg(".i no da galtu pluta");
 }
 
 /*
@@ -689,7 +688,7 @@ levit_check()
 {
     if (!on(player, ISLEVIT))
 	return FALSE;
-    msg("You can't.  You're floating off the ground!");
+    msg(".i tolcu'i lo nu do makfa vofli");
     return TRUE;
 }
 
@@ -704,7 +703,7 @@ call()
     register char **guess, *elsewise = NULL;
     register bool *know;
 
-    obj = get_item("call", CALLABLE);
+    obj = get_item("tercme", CALLABLE);
     /*
      * Make certain that it is somethings that we want to wear
      */
@@ -733,7 +732,7 @@ norm:
 	    if (*guess != NULL)
 		elsewise = *guess;
 	when FOOD:
-	    msg("you can't call that anything");
+	    msg(".i ka'enai tercme zi'o");
 	    return;
 	otherwise:
 	    guess = &obj->o_label;
@@ -742,14 +741,14 @@ norm:
     }
     if (know != NULL && *know)
     {
-	msg("that has already been identified");
+	msg(".i xa'o dubyfa'i");
 	return;
     }
     if (elsewise != NULL && elsewise == op->oi_guess)
     {
-	msg("was called \"%s\"", elsewise);
+	msg(".i zo'oi %s pu cmene", elsewise);
     }
-    msg("what do you want to call it? ");
+    msg(".i ca'o tercme fi ma ");
 
     if (elsewise == NULL)
 	strcpy(prbuf, "");
@@ -776,9 +775,9 @@ register char *where;
     after = FALSE;
     if (cur != NULL)
     {
-	addmsg("you are %s (", how);
+	addmsg(".i do ca'o %s ", how);
 	inv_describe = FALSE;
-	addmsg("%c) %s", cur->o_packch, inv_name(cur, TRUE));
+	addmsg("%c goi %s", cur->o_packch, inv_name(cur, TRUE));
 	inv_describe = TRUE;
 	if (where)
 	    addmsg(" %s", where);
@@ -786,8 +785,7 @@ register char *where;
     }
     else
     {
-	addmsg("you are ");
-	addmsg("%s nothing", how);
+	addmsg(".i do %s no da", how);
 	if (where)
 	    addmsg(" %s", where);
 	endmsg();

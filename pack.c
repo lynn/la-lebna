@@ -145,8 +145,7 @@ out:
      */
     if (!silent)
     {
-	addmsg("you now have ");
-	msg("%s (%c)", inv_name(obj, TRUE), obj->o_packch);
+	msg(".i do co'a ralte %c goi %s", obj->o_packch, inv_name(obj, TRUE));
     }
 }
 
@@ -206,7 +205,7 @@ leave_pack(THING *obj, bool newobj, bool all)
     else
     {
 	last_pick = NULL;
-	pack_used[obj->o_packch - 'a'] = FALSE;
+	pack_used[obj->o_packch - 'A'] = FALSE;
 	detach(pack, obj);
     }
     return nobj;
@@ -224,7 +223,7 @@ pack_char()
     for (bp = pack_used; *bp; bp++)
 	continue;
     *bp = TRUE;
-    return (bp - pack_used) + 'a';
+    return (bp - pack_used) + 'A';
 }
 
 /*
@@ -250,7 +249,7 @@ inventory(THING *list, int type)
 	    strcpy(inv_temp, "%s");
 	else
 #endif
-	    sprintf(inv_temp, "%c) %%s", list->o_packch);
+	    sprintf(inv_temp, "%c goi %%s", list->o_packch);
 	msg_esc = TRUE;
 	if (add_line(inv_temp, inv_name(list, FALSE)) == ESCAPE)
 	{
@@ -349,7 +348,7 @@ picky_inven()
 	for (obj = pack; obj != NULL; obj = next(obj))
 	    if (mch == obj->o_packch)
 	    {
-		msg("%c) %s", mch, inv_name(obj, FALSE));
+		msg("%c goi %s", mch, inv_name(obj, FALSE));
 		return;
 	    }
 	msg("'%s' not in pack", unctrl(mch));
@@ -377,10 +376,8 @@ get_item(char *purpose, int type)
     {
 	for (;;)
 	{
-	    addmsg("which object do you want to ");
-	    addmsg(purpose);
-	    msg("? (* for list): ");
-	    ch = readchar();
+	    msg(".i %s ma (to zo'oi * zo'u liste toi) ", purpose);
+	    ch = toupper(readchar());
 	    mpos = 0;
 	    /*
 	     * Give the poor player a chance to abort the command

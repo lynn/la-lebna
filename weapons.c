@@ -243,8 +243,7 @@ bad:
 
     sp = inv_name(obj, TRUE);
     cur_weapon = obj;
-	addmsg("you are now ");
-    msg("wielding %s (%c)", sp, obj->o_packch);
+    msg(".i do co'a re'olte %c goi %s", obj->o_packch, sp);
 }
 
 /*
