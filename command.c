@@ -236,7 +236,7 @@ over:
 		when 'a':
 		    if (last_comm == '\0')
 		    {
-			msg(".i do ba'o samci'a no se minde");
+			msg(".i do nu'o samci'a minde");
 			after = FALSE;
 		    }
 		    else
@@ -318,7 +318,7 @@ over:
 			{
 			    noscore = TRUE;
 			    turn_see(FALSE);
-			    msg(".i do suksa co'a simsa la .ken.arnld. lo ni mencre ku bu'u lo %dmoi kevdi'u", dnum);
+			    msg(".i do suksa simsa be co'a ku la .ken.arnyld. lo ni mencre ku bu'u lo %dmoi kevdi'u", dnum);
 			}
 			else
 			    msg(".i .e'anai .u'u");
@@ -571,7 +571,7 @@ help()
 		break;
 	}
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, ".i ko danre lo canlu bu batke");
+    waddstr(hw, ".i ko catke la'e me'o canlu bu");
     wrefresh(hw);
     wait_for(' ');
     clearok(stdscr, TRUE);
@@ -688,7 +688,7 @@ levit_check()
 {
     if (!on(player, ISLEVIT))
 	return FALSE;
-    msg(".i tolcu'i lo nu do makfa vofli");
+    msg(".i na cumki fa lo nu do makfa vofli");
     return TRUE;
 }
 
