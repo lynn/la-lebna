@@ -26,22 +26,22 @@ whatis(bool insist, int type)
 
     if (pack == NULL)
     {
-	msg("you don't have anything in your pack to identify");
+	msg("no da poi do ponse ka'e te facki");
 	return;
     }
 
     for (;;)
     {
-	obj = get_item("identify", type);
+	obj = get_item("facki", type);
 	if (insist)
 	{
 	    if (n_objs == 0)
 		return;
 	    else if (obj == NULL)
-		msg("you must identify something");
+		msg(".ei su'o da te facki");
 	    else if (type && obj->o_type != type &&
 	       !(type == R_OR_S && obj->o_type == RING || obj->o_type == STICK))
-		    msg("you must identify a %s", type_name(type));
+		    msg(".ei pa %s ku po'o te facki", type_name(type));
 	    else
 		break;
 	}
@@ -97,14 +97,14 @@ type_name(int type)
 {
     struct h_list *hp;
     static struct h_list tlist[] = {
-	POTION,	 "potion",		FALSE,
-	SCROLL,	 "scroll",		FALSE,
-	FOOD,	 "food",		FALSE,
-	R_OR_S,	 "ring, wand or staff",	FALSE,
-	RING,	 "ring",		FALSE,
-	STICK,	 "wand or staff",	FALSE,
-	WEAPON,	 "weapon",		FALSE,
-	ARMOR,	 "suit of armor",	FALSE,
+	POTION,	 "makfa djacu",		FALSE,
+	SCROLL,	 "makfa papri",		FALSE,
+	FOOD,	 "cidja",		FALSE,
+	R_OR_S,	 "djine ja grana",	FALSE,
+	RING,	 "makfa djine",		FALSE,
+	STICK,	 "makfa grana",		FALSE,
+	WEAPON,	 "xarci",		FALSE,
+	ARMOR,	 "taxfu",		FALSE,
     };
 
     for (hp = tlist; hp->h_ch; hp++)
@@ -126,17 +126,17 @@ create_obj()
     char ch, bless;
 
     obj = new_item();
-    msg("type of item: ");
+    msg("klesi: ");
     obj->o_type = readchar();
     mpos = 0;
-    msg("which %c do you want? (0-f)", obj->o_type);
+    msg("mo'oi %c cu jai se djica do? (0-f)", obj->o_type);
     obj->o_which = (isdigit((ch = readchar())) ? ch - '0' : ch - 'a' + 10);
     obj->o_group = 0;
     obj->o_count = 1;
     mpos = 0;
     if (obj->o_type == WEAPON || obj->o_type == ARMOR)
     {
-	msg("blessing? (+,-,n)");
+	msg("pei makfygau? (+,-,n)");
 	bless = readchar();
 	mpos = 0;
 	if (bless == '-')
@@ -165,7 +165,7 @@ create_obj()
 	    case R_ADDSTR:
 	    case R_ADDHIT:
 	    case R_ADDDAM:
-		msg("blessing? (+,-,n)");
+		msg("pei makfygau? (+,-,n)");
 		bless = readchar();
 		mpos = 0;
 		if (bless == '-')
@@ -179,7 +179,7 @@ create_obj()
 	fix_stick(obj);
     else if (obj->o_type == GOLD)
     {
-	msg("how much?");
+	msg("xo mei?");
 	get_num(&obj->o_goldval, stdscr);
     }
     add_pack(obj, FALSE);
@@ -235,7 +235,7 @@ passwd()
     char *sp, c;
     static char buf[MAXSTR];
 
-    msg("wizard's Password:");
+    msg("lo te makfa jaspu zo'u:");
     mpos = 0;
     sp = buf;
     while ((c = readchar()) != '\n' && c != '\r' && c != ESCAPE)
@@ -266,6 +266,6 @@ show_map()
 	    if (!real)
 		wstandend(hw);
 	}
-    show_win("---More (level map)---");
+    show_win("---cartu jarco zenba---");
 }
 #endif
