@@ -35,95 +35,93 @@ inv_name(THING *obj, bool drop)
     switch (obj->o_type)
     {
         case POTION:
-	    nameit(obj, "potion", p_colors[which], &pot_info[which], nullstr);
+	    nameit(obj, "makfa djacu", p_colors[which], &pot_info[which], nullstr);
 	when RING:
-	    nameit(obj, "ring", r_stones[which], &ring_info[which], ring_num);
+	    nameit(obj, "makfa djine", r_stones[which], &ring_info[which], ring_num);
 	when STICK:
 	    nameit(obj, ws_type[which], ws_made[which], &ws_info[which], charge_str);
 	when SCROLL:
 	    if (obj->o_count == 1)
 	    {
-		strcpy(pb, "A scroll ");
+		strcpy(pb, "lo pa makfa papri ");
 		pb = &prbuf[9];
 	    }
 	    else
 	    {
-		sprintf(pb, "%d scrolls ", obj->o_count);
+		sprintf(pb, "lo %d makfa papri ", obj->o_count);
 		pb = &prbuf[strlen(prbuf)];
 	    }
 	    op = &scr_info[which];
 	    if (op->oi_know)
-		sprintf(pb, "of %s", op->oi_name);
+		sprintf(pb, "pe %s", op->oi_name);
 	    else if (op->oi_guess)
-		sprintf(pb, "called %s", op->oi_guess);
+		sprintf(pb, "pe me'e zo %s", op->oi_guess);
 	    else
-		sprintf(pb, "titled '%s'", s_names[which]);
+		sprintf(pb, "pe me'e zo %s", s_names[which]);
 	when FOOD:
 	    if (which == 1)
 		if (obj->o_count == 1)
-		    sprintf(pb, "A%s %s", vowelstr(fruit), fruit);
+		    sprintf(pb, "lo pa %s", fruit);
 		else
-		    sprintf(pb, "%d %ss", obj->o_count, fruit);
+		    sprintf(pb, "lo %d %s", obj->o_count, fruit);
 	    else
 		if (obj->o_count == 1)
-		    strcpy(pb, "Some food");
+		    strcpy(pb, "lo xo'e cidja");
 		else
-		    sprintf(pb, "%d rations of food", obj->o_count);
+		    sprintf(pb, "lo %d cidja klani", obj->o_count);
 	when WEAPON:
 	    sp = weap_info[which].oi_name;
 	    if (obj->o_count > 1)
-		sprintf(pb, "%d ", obj->o_count);
+		sprintf(pb, "lo %d ", obj->o_count);
 	    else
-		sprintf(pb, "A%s ", vowelstr(sp));
+		sprintf(pb, "lo pa ");
 	    pb = &prbuf[strlen(prbuf)];
 	    if (obj->o_flags & ISKNOW)
 		sprintf(pb, "%s %s", num(obj->o_hplus,obj->o_dplus,WEAPON), sp);
 	    else
 		sprintf(pb, "%s", sp);
-	    if (obj->o_count > 1)
-		strcat(pb, "s");
 	    if (obj->o_label != NULL)
 	    {
 		pb = &prbuf[strlen(prbuf)];
-		sprintf(pb, " called %s", obj->o_label);
+		sprintf(pb, " pe me'e zo %s", obj->o_label);
 	    }
 	when ARMOR:
 	    sp = arm_info[which].oi_name;
 	    if (obj->o_flags & ISKNOW)
 	    {
-		sprintf(pb, "%s %s [",
+		sprintf(pb, "lo %s %s [",
 		    num(a_class[which] - obj->o_arm, 0, ARMOR), sp);
-		    strcat(pb, "protection ");
+		    strcat(pb, "nilbandu fa li ");
 		pb = &prbuf[strlen(prbuf)];
 		sprintf(pb, "%d]", 10 - obj->o_arm);
 	    }
 	    else
-		sprintf(pb, "%s", sp);
+		sprintf(pb, "lo %s", sp);
 	    if (obj->o_label != NULL)
 	    {
 		pb = &prbuf[strlen(prbuf)];
-		sprintf(pb, " called %s", obj->o_label);
+		sprintf(pb, " pe me'e zo %s", obj->o_label);
 	    }
 	when AMULET:
-	    strcpy(pb, "The Amulet of Yendor");
+	    strcpy(pb, "lo djine pe la .iendor.");
 	when GOLD:
-	    sprintf(prbuf, "%d Gold pieces", obj->o_goldval);
+	    sprintf(prbuf, "lo solji be se la'u li %d", obj->o_goldval);
 #ifdef MASTER
 	otherwise:
-	    debug("Picked up something funny %s", unctrl(obj->o_type));
-	    sprintf(pb, "Something bizarre %s", unctrl(obj->o_type));
+	    debug("ba'o tolcri lo noi jai zdile vau %s", unctrl(obj->o_type));
+	    sprintf(pb, "lo noi jai cizra vau %s", unctrl(obj->o_type));
 #endif
     }
     if (inv_describe)
     {
 	if (obj == cur_armor)
-	    strcat(pb, " (being worn)");
+	    strcat(pb, " (ca'o se dasni)");
 	if (obj == cur_weapon)
-	    strcat(pb, " (weapon in hand)");
+	    strcat(pb, " (ca'o se jgari)");
 	if (obj == cur_ring[LEFT])
-	    strcat(pb, " (on left hand)");
+	    strcat(pb, " (ca'o zulxa'e se jgari)");
 	else if (obj == cur_ring[RIGHT])
-	    strcat(pb, " (on right hand)");
+	    strcat(pb, " (ca'o prityxa'e se jgari)");
     }
     if (drop && isupper(prbuf[0]))
 	prbuf[0] = tolower(prbuf[0]);
@@ -147,10 +145,10 @@ drop()
     if (ch != FLOOR && ch != PASSAGE)
     {
 	after = FALSE;
-	msg("there is something there already");
+	msg("su'o da xa'o zvati");
 	return;
     }
-    if ((obj = get_item("drop", 0)) == NULL)
+    if ((obj = get_item("cirko", 0)) == NULL)
 	return;
     if (!dropcheck(obj))
 	return;
@@ -164,7 +162,7 @@ drop()
     obj->o_pos = hero;
     if (obj->o_type == AMULET)
 	amulet = FALSE;
-    msg("dropped %s", inv_name(obj, TRUE));
+    msg("ba'o cirko %s", inv_name(obj, TRUE));
 }
 
 /*
@@ -181,7 +179,7 @@ dropcheck(THING *obj)
 	    return TRUE;
     if (obj->o_flags & ISCURSED)
     {
-	msg("you can't.  It appears to be cursed");
+	msg("na kakne .i si'au malmakfa");
 	return FALSE;
     }
     if (obj == cur_weapon)
@@ -290,7 +288,7 @@ new_thing()
 	    fix_stick(cur);
 #ifdef MASTER
 	otherwise:
-	    debug("Picked a bad kind of object");
+	    debug("ba'o tolcri lo mabla");
 	    wait_for(' ');
 #endif
     }
@@ -317,7 +315,7 @@ pick_one(struct obj_info *info, int nitems)
 #ifdef MASTER
 	if (wizard)
 	{
-	    msg("bad pick_one: %d from %d items", i, nitems);
+	    msg("mabla me'oi pick_one: %d lo %d dacti", i, nitems);
 	    for (info = start; info < end; info++)
 		msg("%s: %d%%", info->oi_name, info->oi_prob);
 	}
@@ -363,7 +361,7 @@ discovered()
 		disc_list = TRUE;
 		break;
 	    default:
-		msg("Please type one of %c%c%c%c (ESCAPE to quit)", POTION, SCROLL, RING, STICK);
+		msg("ko catke su'o batke pe zo'oi %c%c%c%c (zo'oi ESCAPE te zu'e lo nu sisti)", POTION, SCROLL, RING, STICK);
 	}
     } while (!disc_list);
     if (ch == '*')
@@ -465,7 +463,7 @@ add_line(char *fmt, char *arg)
 {
     WINDOW *tw, *sw;
     int x, y;
-    char *prompt = "--Press space to continue--";
+    char *prompt = "--kutybu'i catke--";
     static int maxlen = -1;
 
     if (line_cnt == 0)
@@ -578,18 +576,18 @@ nothing(char type)
 {
     char *sp, *tystr = NULL;
 
-    sprintf(prbuf, "Haven't discovered anything");
+    sprintf(prbuf, "ba'o facki tu'a no da");
     if (type != '*')
     {
 	sp = &prbuf[strlen(prbuf)];
 	switch (type)
 	{
-	    case POTION: tystr = "potion";
-	    when SCROLL: tystr = "scroll";
-	    when RING: tystr = "ring";
-	    when STICK: tystr = "stick";
+	    case POTION: tystr = "makfa djacu";
+	    when SCROLL: tystr = "makfa papri";
+	    when RING: tystr = "makfa djine";
+	    when STICK: tystr = "makfa grana";
 	}
-	sprintf(sp, " about any %ss", tystr);
+	sprintf(sp, " je srana su'o %s", tystr);
     }
     return prbuf;
 }
@@ -607,19 +605,19 @@ nameit(THING *obj, char *type, char *which, struct obj_info *op,
     if (op->oi_know || op->oi_guess)
     {
 	if (obj->o_count == 1)
-	    sprintf(prbuf, "A %s ", type);
+	    sprintf(prbuf, "lo pa %s ", type);
 	else
-	    sprintf(prbuf, "%d %ss ", obj->o_count, type);
+	    sprintf(prbuf, "lo %d %s ", obj->o_count, type);
 	pb = &prbuf[strlen(prbuf)];
 	if (op->oi_know)
-	    sprintf(pb, "of %s%s(%s)", op->oi_name, (*prfunc)(obj), which);
+	    sprintf(pb, "pe %s%s(%s)", op->oi_name, (*prfunc)(obj), which);
 	else if (op->oi_guess)
-	    sprintf(pb, "called %s%s(%s)", op->oi_guess, (*prfunc)(obj), which);
+	    sprintf(pb, "pe me'e zo %s%s(%s)", op->oi_guess, (*prfunc)(obj), which);
     }
     else if (obj->o_count == 1)
-	sprintf(prbuf, "A%s %s %s", vowelstr(which), which, type);
+	sprintf(prbuf, "lo pa %s %s", which, type);
     else
-	sprintf(prbuf, "%d %s %ss", obj->o_count, which, type);
+	sprintf(prbuf, "lo %d %s %ss", obj->o_count, which, type);
 }
 
 /*
@@ -642,7 +640,7 @@ pr_list()
 {
     int ch;
 
-    msg("for what type of object do you want a list? ");
+    msg(".au liste lo ro cmima be mo'oi klesi? ");
     ch = readchar();
     switch (ch)
     {
