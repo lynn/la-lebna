@@ -140,7 +140,7 @@ fall(THING *obj, bool pr)
 	    endmsg();
 	    has_hit = FALSE;
 	}
-	msg("the %s vanishes as it hits the ground",
+	msg("lo %s zi lo nu janli lo loldi cu canci",
 	    weap_info[obj->o_which].oi_name);
     }
     discard(obj);
@@ -235,7 +235,7 @@ bad:
 
     if (obj->o_type == ARMOR)
     {
-	msg("you can't wield armor");
+	msg("ka'e nai bomjgari lo taxfu");
 	goto bad;
     }
     if (is_current(obj))
